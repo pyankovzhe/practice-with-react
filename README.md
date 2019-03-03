@@ -1,2 +1,1 @@
-# practice-with-react
-try react
+Practice with react by reactforbeginners.com

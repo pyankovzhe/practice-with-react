@@ -1,31 +1,37 @@
 import React from 'react';
 
 class AddFishForm extends React.Component {
-  createFish(event) {
+  nameRef = React.createRef();
+  priceRef = React.createRef();
+  statusRef = React.createRef();
+  descRef = React.createRef();
+  imageRef = React.createRef();
+
+  createFish = (event) => {
     event.preventDefault();
-    console.log('make some fish')
+
     const fish = {
-      name: this.name.value,
-      price: this.price.value,
-      status: this.status.value,
-      desc: this.desc.value,
-      image: this.image.value
-    }
+      name: this.nameRef.current.value,
+      price: parseFloat(this.priceRef.current.value),
+      status: this.statusRef.current.value,
+      desc: this.descRef.current.value,
+      image: this.imageRef.current.value
+    };
     this.props.addFish(fish);
-    this.fishForm.reset();
+    event.currentTarget.reset();
   }
 
   render(){
     return(
-    <form ref={(input) => this.fishForm = input} className="fish-edit" onSubmit={(e) => this.createFish(e)}>
-      <input ref={(input) => this.name = input } type="text" placeholder="Fish Name" />
-      <input ref={(input) => this.price = input } type="text" placeholder="Fish Price" />
-      <select ref={(input) => this.status = input } >
+    <form className="fish-edit" onSubmit={this.createFish}>
+      <input ref={this.nameRef} type="text" placeholder="Fish Name" />
+      <input ref={this.priceRef} type="text" placeholder="Fish Price" />
+      <select ref={this.statusRef} >
         <option value="available">Fresh!</option>
         <option value="unavailable">Sold Out!</option>
       </select>
-      <textarea ref={(input) => this.desc = input } placeholder="Fish Desc"></textarea>
-      <input ref={(input) => this.image = input } type="text" placeholder="Fish Image" />
+      <textarea ref={this.descRef} placeholder="Fish Desc"></textarea>
+      <input ref={this.imageRef} type="text" placeholder="Fish Image" />
       <button type="submit">+ Add Item</button>
     </form>
     )
