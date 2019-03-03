@@ -3,16 +3,16 @@ import { formatPrice } from '../helpers';
 
 class Fish extends React.Component {
   render() {
-    const { details } = this.props; // = const details = this.props.details;
+    const { image, name, price, desc } = this.props.details; // = const details = this.props.details;
     return(
       <li className="menu-fish">
-        <img src={details.image} alt={details.image} />
+        <img src={image} alt={name} />
         <h3 className="fish-name">
-          {details.name}
-          <span className="price">{formatPrice(details.price)}</span>
+          {name}
+          <span className="price">{formatPrice(price)}</span>
         </h3>
-        <p>{details.desc}</p>
-        <button>Add to Order</button>
+        <p>{desc}</p>
+        <button>Add to Cart</button>
       </li>
     )
   }
